@@ -20,6 +20,6 @@
 	encode zstd gzip
 
 	handle {
-		reverse_proxy sylverportfolio:8080
+		reverse_proxy sylverportfolio.railway.internal:8080
 	}
 }
