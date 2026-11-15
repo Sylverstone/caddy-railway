@@ -10,7 +10,7 @@
 
 	@railway_health {
 		path /health
-		host healtcheck.railway.app
+		host healthcheck.railway.app
 	}
 
 	handle @railway_health {
