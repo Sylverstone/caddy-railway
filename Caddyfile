@@ -1,11 +1,22 @@
 # Reverse proxy to Sylver_Portfolio over Railway private networking.
 # Railway terminates TLS before it gets to Caddy.
+
+{
+	auto_https off
+	admin off
+}
+
 :8080 {
-	handle /health {
+
+	@railway_health {
+		path /health
+		host healtcheck.railway.app
+	}
+
+	handle @railway_health {
 		respond "OK" 200
 	}
 
-	handle {
-		reverse_proxy sylverportfolio.railway.internal:8080
-	}
+	encode zstd gzip
+	reverse_proxy sylverportfolio:8080
 }
